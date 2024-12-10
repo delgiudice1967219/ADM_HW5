@@ -4,7 +4,7 @@ This GitHub repository contains the implementation of the fifth homework assignm
 
 **Team Members:**
 - Xavier Del Giudice, 1967219, delgiudice.1967219@studenti.uniroma1.it
-- [Your Name], [Your Matricola], [Your Email]
+- Flavio Mangione, 2201201, flaviomangio@gmail.com
 - [Your Name], [Your Matricola], [Your Email]
 
 **Main Notebook:**  
