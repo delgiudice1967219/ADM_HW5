@@ -28,7 +28,7 @@ def identify_and_visualize_busiest_routes(flow_data_df):
     """
     Identify and plot all the busiest routes.
     :param flow_data_df: pandas DataFrame containing all busiest routes information
-    :return:
+    :return: None
     """
     # Sort and identify the top 10 busiest routes by passenger flow
     busiest_routes = flow_data_df.sort_values(by='Passengers', ascending=False).head(20)
@@ -69,7 +69,7 @@ class FlightNetwork:
         """
         Count the number of nodes in the graph.
         :param self: the class object
-        :return:
+        :return: number of nodes in the graph (integer value)
         """
         number_nodes = len(self.graph)
         return number_nodes
@@ -78,7 +78,7 @@ class FlightNetwork:
         """
         Count the number of edges in the graph.
         :param self: the class object
-        :return:
+        :return: number of edges in the graph (integer value)
         """
         number_edges = sum(len(self.graph[node]) for node in self.graph)
         return number_edges
@@ -107,7 +107,7 @@ class FlightNetwork:
         """
         Plot the distribution of the number of incoming and outcoming edges for each node
         :param self: the class object
-        :return:
+        :return: None
         """
         # For each node: Compute the in-degree and out-degree
         # in_degree = dict()
@@ -138,8 +138,7 @@ class FlightNetwork:
         """
         Identify all the hubs(airports with degrees higher than the 90th percentile) and represent as tabular data
         :param self: the class object
-        :return:
-            - hub_df: pandas DataFrame with detailed information for each hub
+        :return: pandas DataFrame with detailed information for each hub
         """
         # Compute the in-degree and out-degree for each node
         # Callback the respective function
@@ -194,6 +193,7 @@ class FlightNetwork:
         :param number_nodes: number of nodes in the graph.
         :param number_edges: number of edges in the graph.
         :param density: density of the graph.
+        :return: None
         """
         print(f"\nNumber of nodes: {number_nodes}")
         print(f"\nNumber of edges: {number_edges}")
@@ -210,6 +210,7 @@ class FlightNetwork:
         Function to compute the total passenger flow between each origin and destination city
         using the graph structure (nodes and edges) instead of the original DataFrame.
         :param self: the class object.
+        :return: pandas DataFrame containing the total passenger flow between each origin and destination city
         """
         # Create a list to store the flow data
         flow_data = []
@@ -236,7 +237,7 @@ class FlightNetwork:
         """
         Function to calculate and plot the average passengers per flight
         :param self: the class object
-        :return:
+        :return: None
         """
         # Calculate the average passengers per flight for each route
         #avg_passengers = self.df.groupby(['Origin_airport', 'Destination_city'])['Passengers'].mean().reset_index()
