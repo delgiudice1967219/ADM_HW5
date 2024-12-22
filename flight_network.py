@@ -1,11 +1,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from IPython.display import display
 import plotly.express as px
 
 
 def classify_graph_density(density):
+    """
+    Utils that classify the graph based on its density.
+    """
     if density > 0.5:
         print("\nThe graph is dense.")
     elif density < 0.1:
@@ -15,13 +17,16 @@ def classify_graph_density(density):
 
 
 def graph_density(number_nodes, number_edges):
+    """
+    Compute the graph density.
+    """
     density = number_edges / (number_nodes * (number_nodes - 1))
     return density
 
 
 def identify_and_visualize_busiest_routes(flow_data_df):
     """
-    Identify all the busiest routes and
+    Identify and plot all the busiest routes.
     :param flow_data_df: pandas DataFrame containing all busiest routes information
     :return:
     """
@@ -62,39 +67,57 @@ class FlightNetwork:
 
     def compute_number_nodes(self):
         """
+        Count the number of nodes in the graph.
         :param self: the class object
         :return:
         """
-        number_nodes = len(self.graph.nodes())
+        number_nodes = len(self.graph)
         return number_nodes
 
     def compute_number_edges(self):
         """
+        Count the number of edges in the graph.
         :param self: the class object
         :return:
         """
-        number_edges = len(self.graph.edges())
+        number_edges = sum(len(self.graph[node]) for node in self.graph)
         return number_edges
 
     def compute_in_and_out_degrees(self):
         """
+        Count the number of incoming and outcoming edges for each node
         :param self: the class object
         :return:
+            Two dictionaries in_degrees, out_degrees:
+            containing the number of incoming and outcoming edges for each node
         """
-        in_degrees = dict(self.graph.in_degree())
-        out_degrees = dict(self.graph.out_degree())
+        #in_degrees = dict(self.graph.in_degree())
+        #out_degrees = dict(self.graph.out_degree())
+        in_degrees = {node: 0 for node in self.graph}
+        for origin in self.graph:
+            for destination in self.graph[origin]:
+                in_degrees[destination] += 1
+
+        out_degrees = {}
+        for node in self.graph:
+            out_degrees[node] = len(self.graph[node])
         return in_degrees, out_degrees
 
     def plot_degree(self):
+        """
+        Plot the distribution of the number of incoming and outcoming edges for each node
+        :param self: the class object
+        :return:
+        """
         # For each node: Compute the in-degree and out-degree
-        #in_degree = dict()
-        #for i in range(list(self.graph.nodes())):
+        # in_degree = dict()
+        # for i in range(list(self.graph.nodes())):
         #    in_degree[i] = self.graph.
 
-        #in_degree = {node: 0 for node in self.graph}
-        #out_degree = {node: 0 for node in self.graph}
+        # in_degree = {node: 0 for node in self.graph}
+        # out_degree = {node: 0 for node in self.graph}
 
-        #for node, neighbors in self.graph.items():
+        # for node, neighbors in self.graph.items():
         #    out_degree[node] = len(neighbors)
         #    for neighbor in neighbors:
         #        in_degree[neighbor] += 1
@@ -123,7 +146,7 @@ class FlightNetwork:
         in_degrees, out_degrees = self.compute_in_and_out_degrees()
 
         # Combine in-degrees and out-degrees to get total degree for each node
-        total_degrees = {node: in_degrees[node] + out_degrees[node] for node in self.graph.nodes()}
+        total_degrees = {node: in_degrees[node] + out_degrees[node] for node in self.graph}
 
         # Calculate the 90th percentile of total degrees
         degree_values = list(total_degrees.values())
@@ -216,13 +239,24 @@ class FlightNetwork:
         :return:
         """
         # Calculate the average passengers per flight for each route
-        avg_passengers = self.df.groupby(['Origin_city', 'Destination_city'])['Passengers'].mean().reset_index()
-        avg_passengers['Route'] = avg_passengers['Origin_city'] + " to " + avg_passengers['Destination_city']
-        avg_passengers = avg_passengers[['Route', 'Passengers']].rename(columns={'Passengers': 'Average Passengers'})
+        #avg_passengers = self.df.groupby(['Origin_airport', 'Destination_city'])['Passengers'].mean().reset_index()
+        #avg_passengers['Route'] = avg_passengers['Origin_city'] + " to " + avg_passengers['Destination_city']
+        #avg_passengers = avg_passengers[['Route', 'Passengers']].rename(columns={'Passengers': 'Average Passengers'})
 
-        print("Over utilized routes(top 10 for average passengers per flight)")
+        # Calculate the total passengers and flights for each route
+        grouped_data = self.df.groupby(['Origin_airport', 'Destination_airport']).agg(
+            {'Passengers': 'sum', 'Flights': 'sum'}).reset_index()
+
+        # Calculate the average passengers per flight
+        grouped_data['Average Passengers'] = grouped_data['Passengers'] / grouped_data['Flights']
+
+        # Create a column for the route name
+        grouped_data['Route'] = grouped_data['Origin_airport'] + " to " + grouped_data['Destination_airport']
+        avg_passengers = grouped_data[['Route', 'Average Passengers']]
+
+        print("Top 10 routes for passenger efficiency")
         print(avg_passengers.sort_values(by='Average Passengers', ascending=False).head(10))
-        print("\nUnder utilized routes(last 10 for average passengers per flight)")
+        print("\nLast 10 routes for passenger efficiency")
         print(avg_passengers.sort_values(by='Average Passengers', ascending=False).tail(10))
 
         # Scatter plot
@@ -240,41 +274,8 @@ class FlightNetwork:
         # Add the opacity for the marker, in this way we improve the readability for the points that are overlapping
         fig.update_traces(marker=dict(opacity=0.6))
         fig.update_layout(
-            xaxis=dict(showticklabels=False),  # Nasconde le etichette sull'asse X
+            xaxis=dict(showticklabels=False),
             yaxis=dict(showgrid=True),
             height=600
-        )
-
-        # Add the over under threshold line
-        fig.add_shape(
-            type='line',
-            x0=-0.5, x1=len(avg_passengers) - 0.5,  # Dalla prima all'ultima rotta
-            y0=500, y1=500,
-            line=dict(color='green', width=2, dash='dash'),
-        )
-        # Add the over utilized threshold line
-        fig.add_shape(
-            type='line',
-            x0=-0.5, x1=len(avg_passengers) - 0.5,  # Dalla prima all'ultima rotta
-            y0=10000, y1=10000,
-            line=dict(color='green', width=2, dash='dash'),
-        )
-
-        # Add the annotation text for the lower horizontal line(under utilized threshold)
-        fig.add_annotation(
-            x=len(avg_passengers) + 1000, y=-300,
-            text="Threshold for under utilized routes",
-            showarrow=False,
-            font=dict(size=12, color='green'),
-            align='left',
-        )
-
-        # Add the annotation text for the higher horizontal line(over utilized threshold)
-        fig.add_annotation(
-            x=len(avg_passengers) + 1000, y=10400,
-            text="Threshold for over utilized routes",
-            showarrow=False,
-            font=dict(size=12, color='green'),
-            align='left',
         )
         fig.show()
