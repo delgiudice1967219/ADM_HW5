@@ -17,8 +17,16 @@ class FlightNetworkVisualizer:
         """
         # Create a DataFrame to store the average passengers for each route
         # We need that to filter the route based on this information
+
+        # Calculate the total passengers and flights for each route
+        grouped_data = self.df.groupby(['Origin_airport', 'Destination_airport']).agg(
+            {'Passengers': 'sum', 'Flights': 'sum'}).reset_index()
+
+        # Calculate the average passengers per flight
+        grouped_data['Average Passengers'] = grouped_data['Passengers'] / grouped_data['Flights']
+
         avg_passengers_df = self.df.groupby(['Origin_airport', 'Destination_airport'])['Passengers'].mean().reset_index()
-        return avg_passengers_df
+        return grouped_data
 
     def add_avg_passengers_to_edges(self, avg_passengers_df):
         """
@@ -31,7 +39,7 @@ class FlightNetworkVisualizer:
         for _, row in avg_passengers_df.iterrows():
             origin_airport = row['Origin_airport']
             destination_airport = row['Destination_airport']
-            avg_passengers = row['Passengers']
+            avg_passengers = row['Average Passengers']
 
             origin_node = origin_airport  # origin_airport is directly the node in the graph
             destination_node = destination_airport  # destination_airport is directly the node in the graph
