@@ -87,7 +87,7 @@ It also provides a method, analyze_centrality, that returns a DataFrame summariz
                 stack.append(node)
 
             # Initialize a dictionary for dependency propagation
-            dependency = {node: 0 for node in self.nodes}
+            dependency = {node: 1 for node in self.nodes}
 
             # Process the nodes in reverse order (post-order)
             while stack:
@@ -96,16 +96,17 @@ It also provides a method, analyze_centrality, that returns a DataFrame summariz
                     # Update the dependency of the predecessor based on the current node
                     # This is a modification of the classic formula to account for both the distance of the current node 
                     # and the number of predecessors. The formula adjusts the dependency by incorporating the distance of the node 
-                    # and the number of predecessors, scaling it with a factor of 0.07. If the current node distance is zero, no update occurs.
-                    dependency[pred] += (1+dependency[node]) / (len(predecessors[node]) * (0.07*distances[node])) if distances[node]!=0 else 0
+                    # and the number of predecessors, scaling it with a factor of 0.05 (5% of node's distance). 
+                    # If the current node distance is zero, no update occurs.
+                    dependency[pred] += (dependency[node]) / (len(predecessors[node]) * (0.05 * distances[node])) if distances[node]!=0 else 0
                     if pred != source:
                         betweenness[pred] += dependency[pred]
 
         # Calculate the number of possible combinations of 2 nodes from a set of len(self.nodes) nodes
-        # The correct formula for C(n, 2) is (n * (n - 1)) / 2
-        normalization = (len(self.nodes) - 1) * (len(self.nodes) - 2) / 2
+        # The correct formula for C(n, 2) is (n - 1) * (n - 2) 
+        normalization = (len(self.nodes) - 1) * (len(self.nodes) - 2) 
         for node in betweenness:
-            betweenness[node] /= normalization # Normalize the betweenness centrality 
+            betweenness[node] /= normalization # Normalize the betweenness centrality. This rescales all scores in the range (0,1)
 
         return betweenness
     
