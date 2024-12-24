@@ -6,8 +6,13 @@ import plotly.express as px
 
 def classify_graph_density(density):
     """
-    Utils that classify the graph based on its density.
+    Function that classify the graph based on its density.
+
+    :param density: density of the graph to analyze
+
+    :return: None
     """
+
     if density > 0.5:
         print("\nThe graph is dense.")
     elif density < 0.1:
@@ -19,7 +24,13 @@ def classify_graph_density(density):
 def graph_density(number_nodes, number_edges):
     """
     Compute the graph density.
+
+    :param number_nodes: number of nodes of the graph to analyze
+    :param number_edges: number of edges of the graph to analyze
+
+    :return: the density of the graph (float)
     """
+
     density = number_edges / (number_nodes * (number_nodes - 1))
     return density
 
@@ -27,9 +38,12 @@ def graph_density(number_nodes, number_edges):
 def identify_and_visualize_busiest_routes(flow_data_df):
     """
     Identify and plot all the busiest routes.
+
     :param flow_data_df: pandas DataFrame containing all busiest routes information
+
     :return: None
     """
+
     # Sort and identify the top 10 busiest routes by passenger flow
     busiest_routes = flow_data_df.sort_values(by='Passengers', ascending=False).head(20)
 
@@ -52,8 +66,10 @@ def identify_and_visualize_busiest_routes(flow_data_df):
     plt.xlabel('Passengers')
     plt.ylabel('Routes')
     plt.title('Top 20 Busiest Routes by Passenger Traffic')
+
     # Reverse order for top to bottom bars
     plt.gca().invert_yaxis()
+
     # Add a color bar to show the color scale
     cbar = plt.colorbar(plt.cm.ScalarMappable(cmap='viridis', norm=norm), ax=plt.gca())
     cbar.set_label('Number of Passengers')
@@ -68,31 +84,37 @@ class FlightNetwork:
     def compute_number_nodes(self):
         """
         Count the number of nodes in the graph.
+
         :param self: the class object
-        :return: number of nodes in the graph (integer value)
+
+        :return: number of nodes in the graph (int)
         """
+
         number_nodes = len(self.graph)
         return number_nodes
 
     def compute_number_edges(self):
         """
         Count the number of edges in the graph.
+
         :param self: the class object
-        :return: number of edges in the graph (integer value)
+
+        :return: number of edges in the graph (int)
         """
+
         number_edges = sum(len(self.graph[node]) for node in self.graph)
         return number_edges
 
     def compute_in_and_out_degrees(self):
         """
-        Count the number of incoming and outcoming edges for each node
+        Count the number of incoming and outcoming edges for each node.
+
         :param self: the class object
-        :return:
-            Two dictionaries in_degrees, out_degrees:
+
+        :return: Two dictionaries in_degrees, out_degrees,
             containing the number of incoming and outcoming edges for each node
         """
-        #in_degrees = dict(self.graph.in_degree())
-        #out_degrees = dict(self.graph.out_degree())
+
         in_degrees = {node: 0 for node in self.graph}
         for origin in self.graph:
             for destination in self.graph[origin]:
@@ -105,22 +127,13 @@ class FlightNetwork:
 
     def plot_degree(self):
         """
-        Plot the distribution of the number of incoming and outcoming edges for each node
+        Plot the distribution of the number of incoming and outcoming edges for each node.
+
         :param self: the class object
+
         :return: None
         """
-        # For each node: Compute the in-degree and out-degree
-        # in_degree = dict()
-        # for i in range(list(self.graph.nodes())):
-        #    in_degree[i] = self.graph.
 
-        # in_degree = {node: 0 for node in self.graph}
-        # out_degree = {node: 0 for node in self.graph}
-
-        # for node, neighbors in self.graph.items():
-        #    out_degree[node] = len(neighbors)
-        #    for neighbor in neighbors:
-        #        in_degree[neighbor] += 1
         in_degrees, out_degrees = self.compute_in_and_out_degrees()
 
         # Plot two separate histograms for the in-degree and the out-degree, respectively
@@ -136,10 +149,13 @@ class FlightNetwork:
 
     def identify_hubs(self):
         """
-        Identify all the hubs(airports with degrees higher than the 90th percentile) and represent as tabular data
+        Identify all the hubs(airports with degrees higher than the 90th percentile) and represent as tabular data.
+
         :param self: the class object
+
         :return: pandas DataFrame with detailed information for each hub
         """
+
         # Compute the in-degree and out-degree for each node
         # Callback the respective function
         in_degrees, out_degrees = self.compute_in_and_out_degrees()
@@ -154,6 +170,7 @@ class FlightNetwork:
         # Identify hubs: nodes with total degree greater than the 90th percentile
         hubs = [node for node, degree in total_degrees.items() if degree > percentile_90]
 
+        # Create a list to store the data
         hub_data = []
 
         # Extract all the information for each hub, store in a list of dictionary
@@ -175,13 +192,16 @@ class FlightNetwork:
 
     def analyze_graph_features(self):
         """
-        Function to compute the fundamental information about the graph
+        Function to compute the fundamental information about the graph.
+
         :param self: the class object:
+
         :return:
-            - number_nodes (int): number of nodes in the graph.
-            - number_edges (int): number of edges in the graph.
+            - number_nodes (int): number of nodes in the graph
+            - number_edges (int): number of edges in the graph
             - density (float): density of the graph.
         """
+
         number_nodes = self.compute_number_nodes()
         number_edges = self.compute_number_edges()
         density = graph_density(number_nodes, number_edges)
@@ -189,29 +209,45 @@ class FlightNetwork:
 
     def summarize_graph_features(self, number_nodes, number_edges, density):
         """
-        Function that generates a detailed report of the graph's features
-        :param number_nodes: number of nodes in the graph.
-        :param number_edges: number of edges in the graph.
-        :param density: density of the graph.
+        Function that generates a detailed report of the graph's features.
+
+        :param number_nodes: number of nodes in the graph
+
+        :param number_edges: number of edges in the graph
+
+        :param density: density of the graph
+
         :return: None
         """
+
         print(f"\nNumber of nodes: {number_nodes}")
+
         print(f"\nNumber of edges: {number_edges}")
+
         print(f"\nDensity of the graph: {density}")
+
         classify_graph_density(density)
+
         print(f"\nHubs (Airports with degrees higher than the 90th percentile):")
+
         hubs_df = self.identify_hubs()
+
         hubs_df.sort_values(by='Total Degree', ascending=False, inplace=True)
+
         print(hubs_df.head(20))
+
         self.plot_degree()
 
     def compute_passenger_flow(self):
         """
         Function to compute the total passenger flow between each origin and destination city
         using the graph structure (nodes and edges) instead of the original DataFrame.
-        :param self: the class object.
+
+        :param self: the class object
+
         :return: pandas DataFrame containing the total passenger flow between each origin and destination city
         """
+
         # Create a list to store the flow data
         flow_data = []
 
@@ -235,14 +271,12 @@ class FlightNetwork:
 
     def calculate_avg_passengers_per_flight(self):
         """
-        Function to calculate and plot the average passengers per flight
+        Function to calculate and plot the average passengers per flight.
+
         :param self: the class object
+
         :return: None
         """
-        # Calculate the average passengers per flight for each route
-        #avg_passengers = self.df.groupby(['Origin_airport', 'Destination_city'])['Passengers'].mean().reset_index()
-        #avg_passengers['Route'] = avg_passengers['Origin_city'] + " to " + avg_passengers['Destination_city']
-        #avg_passengers = avg_passengers[['Route', 'Passengers']].rename(columns={'Passengers': 'Average Passengers'})
 
         # Calculate the total passengers and flights for each route
         grouped_data = self.df.groupby(['Origin_airport', 'Destination_airport']).agg(

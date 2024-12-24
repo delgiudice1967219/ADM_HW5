@@ -12,7 +12,9 @@ class FlightNetworkVisualizer:
     def calculate_avg_passengers(self):
         """
         Computes average passengers per flight for each route
+
         :param self: the class object
+
         :return: pandas dataframe with average passengers per flight
         """
         # Create a DataFrame to store the average passengers for each route
@@ -31,8 +33,10 @@ class FlightNetworkVisualizer:
     def add_avg_passengers_to_edges(self, avg_passengers_df):
         """
         Add the computed average passengers to the edges of the graph
+
         :param self: the class object
         :param avg_passengers_df: the dataframe containing the average passengers per flight for each route
+
         :return: None
         """
         # Loop through each route and add average passengers to the edge
@@ -51,8 +55,10 @@ class FlightNetworkVisualizer:
     def create_map(self, passenger_range, node_filter):
         """
         Create a folium interactive Map
+
         :param passenger_range: list of value of the slider filter inserted in input in the dash web app
         :param node_filter: the label relative to the filter inserted in input in the dash web app
+
         :return: HTML of the Folium Map
         """
         # Create a folium map centered in the United States, specifying the CartoDB dark_matter tile (dark stile)
