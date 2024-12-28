@@ -17,12 +17,12 @@ The main script can be visualized using [nbviewer]().
 ```plaintext
 ├── us-states.json               # GeoJSON file with USA map data for visualization
 ├── functions/                   # Directory containing core project modules
-│   ├── graph_analysis.py        # Module for graph-based analyses (e.g., degree, density)
-│   ├── centrality_measures.py   # Module for calculating centrality measures
-│   ├── route_finder.py          # Module for finding optimal routes
-│   ├── partitioning.py          # Module for graph partitioning
-│   ├── community_detection.py   # Module for community detection
-│   └── utils.py                 # Helper functions for data processing and visualization
+│   ├── flight_network.py        # Module for graph-based analysis
+│   ├── map_visualizer.py        # Module for create an interactive map visualization
+│   ├── partitioner.py           # Module for create partition of the graph and visualize them
+│   ├── AirlineRouteNetwork.py   # Module for graph partitioning
+│   ├── Centrality_Graph.py      # Module for community detection
+│   └── Network_Metrics.py       # Helper functions for data processing and visualization
 ├── main.ipynb                  # Main notebook with the implementation and results
 ├── .gitignore                  # Specifies files and directories ignored by Git
 ├── README.md                   # Project documentation
@@ -31,12 +31,14 @@ The main script can be visualized using [nbviewer]().
 
 Here are links to all the files:
 
-* [us-state.json](us-state.json): GeoJSON file containing the USA map.
+* [us-states.json](us-states.json): GeoJSON file containing the USA map.
 * [functions](functions/): Contains Python modules with reusable functions for each analysis task.
-  * [crawler.py](functions/crawler.py): Module for scraping Michelin restaurant data
-  * [parser.py](functions/parser.py): Module for parsing and extracting data from HTML files
-  * [engine.py](functions/engine.py): Implementation of the search engine (conjunctive and ranked search)
-  * [search_restaurants_ui.py](functions/search_restaurants_ui.py): User interface for advanced search and custom scoring    
+  * [flight_network.py](functions/flight_network.py) Module for graph-based analysis
+  * [map_visualizer.py](functions/map_visualizer.py): Module for create an interactive map visualization using dash
+  * [partitioner.py](functions/partitioner.py): Module for create two partition of the original graph and visualize them on the USA map
+  * [AirlineRouteNetwork.py](functions/AirlineRouteNetwork.py): User interface for advanced search and custom scoring
+  * [Centrality_Graph.py](functions/Centrality_Graph.py): Moudle for...
+  * [Network_Metrics.py](functions/Network_Metrics.py): Module for...
 * [main.ipynb](main.ipynb): The main notebook presenting the tasks, solutions, and results.  
 * [README.md](README.md): Project documentation.  
 * LICENSE: License file for the project.
