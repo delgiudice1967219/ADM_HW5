@@ -1,6 +1,6 @@
 # ADM - Homework 5: USA Airport Flight Analysis, Group #10
 
-This GitHub repository contains the implementation of the fifth homework assignment for the **Algorithmic Methods of Data Mining** course (2024-2025) for the master's degree in Data Science at Sapienza University. This project focuses on analyzing the USA Airport Dataset and implementing a series of algorithms to explore flight networks, assess centrality measures, find optimal routes, and detect communities.
+This GitHub repository contains the implementation of the fifth homework assignment for the **Algorithmic Methods of Data Mining** course (2024-2025) for the master's degree in Data Science at Sapienza University. This project focuses on analyzing the USA Airport Dataset and implementing a series of algorithms to explore flight networks, assess centrality measures, find optimal routes, and detect communities. The details of the assignement are specified [here](https://github.com/Sapienza-University-Rome/ADM/tree/master/2024/Homework_5).
 
 **Team Members:**
 - Xavier Del Giudice, 1967219, delgiudice.1967219@studenti.uniroma1.it
@@ -15,11 +15,8 @@ The main script can be visualized using [nbviewer]().
 ## Repository Structure
 
 ```plaintext
-├── datasets/                   # Directory containing the dataset files
-│   ├── USA_airports.csv         # Airport data
-│   ├── flight_routes.csv        # Flight routes data
-│   └── passengers.csv           # Passenger data
-├── functions/                  # Directory containing core project modules
+├── us-states.json               # GeoJSON file with USA map data for visualization
+├── functions/                   # Directory containing core project modules
 │   ├── graph_analysis.py        # Module for graph-based analyses (e.g., degree, density)
 │   ├── centrality_measures.py   # Module for calculating centrality measures
 │   ├── route_finder.py          # Module for finding optimal routes
@@ -32,13 +29,17 @@ The main script can be visualized using [nbviewer]().
 └── LICENSE                     # License file for the project
 ```
 
-### File Descriptions
+Here are links to all the files:
 
-- **[datasets](datasets/):** Contains the dataset files used in the analysis.  
-- **[functions](functions/):** Contains Python modules with reusable functions for each analysis task.  
-- **[main.ipynb](main.ipynb):** The main notebook presenting the tasks, solutions, and results.  
-- **[README.md](README.md):** Project documentation (this file).  
-- **LICENSE:** Specifies the licensing details for this project.
+* [us-state.json](us-state.json): GeoJSON file containing the USA map.
+* [functions](functions/): Contains Python modules with reusable functions for each analysis task.
+  * [crawler.py](functions/crawler.py): Module for scraping Michelin restaurant data
+  * [parser.py](functions/parser.py): Module for parsing and extracting data from HTML files
+  * [engine.py](functions/engine.py): Implementation of the search engine (conjunctive and ranked search)
+  * [search_restaurants_ui.py](functions/search_restaurants_ui.py): User interface for advanced search and custom scoring    
+* [main.ipynb](main.ipynb): The main notebook presenting the tasks, solutions, and results.  
+* [README.md](README.md): Project documentation.  
+* LICENSE: License file for the project.
 
 ---
 
@@ -113,9 +114,3 @@ We solve an optimization problem to find the cheapest flight route under specifi
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
----
-
-## Contact
-
-For any questions or collaborations, please reach out to the team members via the emails provided above.  
