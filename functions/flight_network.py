@@ -212,28 +212,21 @@ class FlightNetwork:
         Function that generates a detailed report of the graph's features.
 
         :param number_nodes: number of nodes in the graph
-
         :param number_edges: number of edges in the graph
-
         :param density: density of the graph
 
         :return: None
         """
 
         print(f"\nNumber of nodes: {number_nodes}")
-
         print(f"\nNumber of edges: {number_edges}")
-
         print(f"\nDensity of the graph: {density}")
 
         classify_graph_density(density)
 
         print(f"\nHubs (Airports with degrees higher than the 90th percentile):")
-
         hubs_df = self.identify_hubs()
-
         hubs_df.sort_values(by='Total Degree', ascending=False, inplace=True)
-
         print(hubs_df.head(20))
 
         self.plot_degree()
