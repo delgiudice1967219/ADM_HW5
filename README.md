@@ -23,15 +23,16 @@ The main script can be visualized using [nbviewer]().
 │   ├── partitioner.py           # Module for create partition of the graph and visualize them
 │   ├── AirlineRouteNetwork.py   # Module for managing and analyzing flight networks
 │   ├── Centrality_Graph.py      # Module for compute and compare centrality measures for all nodes in the graph
+│   ├── connected_components.py  # Module to compute connected components within a graph
 │   └── Network_Metrics.py       # Module for computing and analyzing various graph centrality metrics 
 ├── Communities/                 # Package with modules related to Community Detection
-│   ├── __init__.py               # Initializes the package
-│   ├── community.py              # Contains a class used within the Louvain algorithm for community detection
-│   ├── louvain.py                # Implements the Louvain algorithm as a class
-│   ├── optimized_louvain.py      # Provides a vectorized version of the Louvain algorithm implemented as a function
-│   ├── plot.py                   # Contains a function to plot detected communities in a map
-│   ├── city_graph.pkl            # A graph of cities extracted from a dataset, with edge weights representing flights between cities
-│   └── city_coordinates.pkl      # A dictionary mapping each city to its geographical coordinates
+│   ├── __init__.py              # Initializes the package
+│   ├── community.py             # Contains a class used within the Louvain algorithm for community detection
+│   ├── louvain.py               # Implements the Louvain algorithm as a class
+│   ├── optimized_louvain.py     # Provides a vectorized version of the Louvain algorithm implemented as a function
+│   ├── plot.py                  # Contains a function to plot detected communities in a map
+│   ├── city_graph.pkl           # A graph of cities extracted from a dataset, with edge weights representing flights between cities
+│   └── city_coordinates.pkl     # A dictionary mapping each city to its geographical coordinates
 ├── main.ipynb                  # Main notebook with the implementation and results
 ├── .gitignore                  # Specifies files and directories ignored by Git
 ├── README.md                   # Project documentation
@@ -44,10 +45,12 @@ Here are links to all the files:
 * [functions](functions/): Contains Python modules with reusable functions for each analysis task.
   * [flight_network.py](functions/flight_network.py) Module for graph-based analysis
   * [map_visualizer.py](functions/map_visualizer.py): Module for create an interactive map visualization using dash
-  * [partitioner.py](functions/partitioner.py): Module for create two partition of the original graph and visualize them on the USA map
+  * [partitioner.py](functions/partitioner.py): Module for create two partition of the original graph and visualize them on the 
+  * [connected_components.py](functions/connected_components.py): Module to compute connected components within a graph
   * [AirlineRouteNetwork.py](functions/AirlineRouteNetwork.py): Module for analyzing flight networks with route planning and shortest path computations between airports
   * [Centrality_Graph.py](functions/Centrality_Graph.py): Module for compute and compare centrality measures for all nodes in the graph
   * [Network_Metrics.py](functions/Network_Metrics.py): Module for computing and analyzing various graph centrality metrics 
+* [Communities](Communities/): Package with modules related to Community Detection. 
 * [main.ipynb](main.ipynb): The main notebook presenting the tasks, solutions, and results.  
 * [README.md](README.md): Project documentation.  
 * LICENSE: License file for the project.
