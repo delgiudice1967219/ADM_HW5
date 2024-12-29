@@ -66,7 +66,7 @@ Using centrality measures, we identify critical airports in the network that pla
 - Top airports for each centrality measure
 
 **Key Technologies Used:**  
-- Python: networkx, pandas,matplotlib,seaborn 
+- Python: networkx, pandas, matplotlib, seaborn 
 
 ### 3. Finding Best Routes (Q3)
 We implement a shortest-path algorithm to find the optimal route between two cities based on flight distances. The function:  
