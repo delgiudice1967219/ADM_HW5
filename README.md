@@ -6,6 +6,7 @@ This GitHub repository contains the implementation of the fifth homework assignm
 - Xavier Del Giudice, 1967219, delgiudice.1967219@studenti.uniroma1.it
 - Flavio Mangione, 2201201, flaviomangio@gmail.com
 - [Your Name], [Your Matricola], [Your Email]
+- Andrea Di Vincenzo, 1887012, divincenzo.1887012@studenti.uniroma1.it
 
 **Main Notebook:**  
 The main script can be visualized using [nbviewer]().
@@ -53,11 +54,13 @@ This project leverages network analysis, optimization techniques, and visualizat
 We analyze the basic features of the USA flight network graph, including size, density, and degree distribution. Key outputs include:  
 - Graph metrics (nodes, edges, density)  
 - Identification of hub airports  
-- Busiest routes by passenger flow and efficiency  
-- Interactive flight network map
+- Busiest routes by passenger flow and efficiency
+- Under and Over-Utilized routes
+- Interactive flight network map:
+#### Usage of the interactive map
 
 **Key Technologies Used:**  
-- Python: pandas, matplotlib, seaborn, networkx, plotly  
+- Python: Pandas, Matplotlib, Networkx, Dash, Folium  
 
 ### 2. Nodes' Contribution (Q2)
 Using centrality measures, we identify critical airports in the network that play a pivotal role in connectivity. Outputs include:  
@@ -80,10 +83,10 @@ We implement a shortest-path algorithm to find the optimal route between two cit
 ### 4. Airline Network Partitioning (Q4)
 We address the graph disconnection problem by removing the minimum number of flights to separate the network into two disconnected subgraphs. Outputs include:  
 - Flights removed to achieve separation  
-- Visualizations of the original and partitioned networks  
+- Visualizations of the original and partitioned networks on the USA map
 
 **Key Technologies Used:**  
-- Python: networkx, matplotlib  
+- Python: Networkx, Matplotlib, GeoPandas   
 
 ### 5. Finding and Extracting Communities (Q5)
 Using community detection algorithms, we analyze city-level flight connectivity. Key deliverables include:  
@@ -105,11 +108,11 @@ We implement a PySpark-based MapReduce algorithm to identify connected component
 
 ### Algorithmic Question (AQ)
 We solve an optimization problem to find the cheapest flight route under specific constraints (maximum stops). Key outputs include:  
-- Cost and route for the optimal path  
+- Cost for the optimal path  
 - Efficiency analysis and scalability improvements  
 
 **Key Technologies Used:**  
-- Python: priority queue, custom optimization algorithms  
+- Python: priority queue, custom optimization algorithms
 
 ---
 
