@@ -43,14 +43,21 @@ Here are links to all the files:
 
 * [us-states.json](us-states.json): GeoJSON file containing the USA map.
 * [functions](functions/): Contains Python modules with reusable functions for each analysis task.
-  * [flight_network.py](functions/flight_network.py) Module for graph-based analysis
-  * [map_visualizer.py](functions/map_visualizer.py): Module for create an interactive map visualization using dash
-  * [partitioner.py](functions/partitioner.py): Module for create two partition of the original graph and visualize them on the 
-  * [connected_components.py](functions/connected_components.py): Module to compute connected components within a graph
-  * [AirlineRouteNetwork.py](functions/AirlineRouteNetwork.py): Module for analyzing flight networks with route planning and shortest path computations between airports
-  * [Centrality_Graph.py](functions/Centrality_Graph.py): Module for compute and compare centrality measures for all nodes in the graph
-  * [Network_Metrics.py](functions/Network_Metrics.py): Module for computing and analyzing various graph centrality metrics 
-* [Communities](Communities/): Package with modules related to Community Detection. 
+  * [flight_network.py](functions/flight_network.py) Module for graph-based analysis.
+  * [map_visualizer.py](functions/map_visualizer.py): Module for create an interactive map visualization using dash.
+  * [partitioner.py](functions/partitioner.py): Module for create two partition of the original graph and visualize them on the USA map. 
+  * [connected_components.py](functions/connected_components.py): Module to compute connected components within a graph.
+  * [AirlineRouteNetwork.py](functions/AirlineRouteNetwork.py): Module for analyzing flight networks with route planning and shortest path computations between airports.
+  * [Centrality_Graph.py](functions/Centrality_Graph.py): Module for compute and compare centrality measures for all nodes in the graph.
+  * [Network_Metrics.py](functions/Network_Metrics.py): Module for computing and analyzing various graph centrality metrics. 
+* [Communities](Communities/): Package with modules related to Community Detection.
+  * [__init__.py](Communities/__init__.py) Module that initializes the package.
+  * [community.py](Communities/community.py): Module that contains the implementation within the Louvain algorithm for community detection.
+  * [louvain.py](Communities/louvain.py): Module that implements the Louvain algorithm. 
+  * [optimized_louvain.py](Communities/optimized_louvain.py): Module that provides a vectorized implementation of the Louvain algorithm.
+  * [plot.py](Communities/plot.py): Module that contains functions to plot detected communities in the USA map.
+  * [city_graph.pkl](Communities/city_graph.pkl): Pickle file that store a graph of cities extracted from the dataset.
+  * [city_coordinates.pkl](Communities/city_coordinates.pkl): Pickle file storing a dictionary that maps each city to its geographical coordinates.
 * [main.ipynb](main.ipynb): The main notebook presenting the tasks, solutions, and results.  
 * [README.md](README.md): Project documentation.  
 * LICENSE: License file for the project.
