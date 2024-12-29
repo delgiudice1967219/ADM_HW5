@@ -26,8 +26,6 @@ class FlightNetworkVisualizer:
 
         # Calculate the average passengers per flight
         grouped_data['Average Passengers'] = grouped_data['Passengers'] / grouped_data['Flights']
-
-        avg_passengers_df = self.df.groupby(['Origin_airport', 'Destination_airport'])['Passengers'].mean().reset_index()
         return grouped_data
 
     def add_avg_passengers_to_edges(self, avg_passengers_df):
