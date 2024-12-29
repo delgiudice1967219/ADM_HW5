@@ -9,7 +9,7 @@ This GitHub repository contains the implementation of the fifth homework assignm
 - Andrea Di Vincenzo, 1887012, divincenzo.1887012@studenti.uniroma1.it
 
 **Main Notebook:**  
-The main script can be visualized using [nbviewer]().
+Since some plot are not directly viewable, the main notebook can be entirely visualized using [nbviewer](https://nbviewer.org/github/delgiudice1967219/ADM_HW5/blob/main/main.ipynb).
 
 ---
 
