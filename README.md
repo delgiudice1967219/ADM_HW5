@@ -56,7 +56,7 @@ We analyze the basic features of the USA flight network graph, including size, d
 - Identification of hub airports  
 - Busiest routes by passenger flow and efficiency
 - Under and Over-Utilized routes
-- Interactive flight network map:
+- Interactive flight network map: the map is developed in a Dash app, so it is not visible in the notebook. To use it, you need to run the respective cell and click on the generated link. Below is an example of how it works.
 
 #### Usage of the interactive map
 https://github.com/user-attachments/assets/173a720a-48e3-4a25-b638-9f7945798eb9
