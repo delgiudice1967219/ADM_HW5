@@ -1,6 +1,6 @@
 # ADM - Homework 5: USA Airport Flight Analysis, Group #10
 
-This GitHub repository contains the implementation of the fifth homework assignment for the **Algorithmic Methods of Data Mining** course (2024-2025) for the master's degree in Data Science at Sapienza University. This project focuses on analyzing the USA Airport Dataset and implementing a series of algorithms to explore flight networks, assess centrality measures, find optimal routes, and detect communities. The details of the assignement are specified [here](https://github.com/Sapienza-University-Rome/ADM/tree/master/2024/Homework_5).
+This GitHub repository contains the implementation of the fifth homework assignment for the **Algorithmic Methods of Data Mining** course (2024-2025) for the master's degree in Data Science at Sapienza University. This project focuses on analyzing the [USA Airport Dataset](https://www.kaggle.com/datasets/flashgordon/usa-airport-dataset) and implementing a series of algorithms to explore flight networks, assess centrality measures, find optimal routes, and detect communities. The details of the assignement are specified [here](https://github.com/Sapienza-University-Rome/ADM/tree/master/2024/Homework_5).
 
 **Team Members:**
 - Xavier Del Giudice, 1967219, delgiudice.1967219@studenti.uniroma1.it
