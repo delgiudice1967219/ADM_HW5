@@ -5,7 +5,7 @@ This GitHub repository contains the implementation of the fifth homework assignm
 **Team Members:**
 - Xavier Del Giudice, 1967219, delgiudice.1967219@studenti.uniroma1.it
 - Flavio Mangione, 2201201, flaviomangio@gmail.com
-- [Your Name], [Your Matricola], [Your Email]
+- Leonardo Rocci, 1922496, rocci.1922496@studenti.uniroma1.it
 - Andrea Di Vincenzo, 1887012, divincenzo.1887012@studenti.uniroma1.it
 
 **Main Notebook:**  
@@ -24,6 +24,14 @@ The main script can be visualized using [nbviewer]().
 │   ├── AirlineRouteNetwork.py   # Module for managing and analyzing flight networks
 │   ├── Centrality_Graph.py      # Module for compute and compare centrality measures for all nodes in the graph
 │   └── Network_Metrics.py       # Module for computing and analyzing various graph centrality metrics 
+├── Communities/                 # Package with modules related to Community Detection
+│   ├── __init__.py               # Initializes the package
+│   ├── community.py              # Contains a class used within the Louvain algorithm for community detection
+│   ├── louvain.py                # Implements the Louvain algorithm as a class
+│   ├── optimized_louvain.py      # Provides a vectorized version of the Louvain algorithm implemented as a function
+│   ├── plot.py                   # Contains a function to plot detected communities in a map
+│   ├── city_graph.pkl            # A graph of cities extracted from a dataset, with edge weights representing flights between cities
+│   └── city_coordinates.pkl      # A dictionary mapping each city to its geographical coordinates
 ├── main.ipynb                  # Main notebook with the implementation and results
 ├── .gitignore                  # Specifies files and directories ignored by Git
 ├── README.md                   # Project documentation
