@@ -84,9 +84,7 @@ It also provides a method, analyze_centrality, that returns a DataFrame summariz
             distances, predecessors = self.shortest_paths(source)
 
             # Stack to store nodes in reverse order for processing
-            stack = []
-            for node in sorted(self.nodes, key=lambda x: distances[x], reverse=True):
-                stack.append(node)
+            stack=sorted(self.nodes, key=lambda x: distances[x], reverse=True)
 
             # Initialize a dictionary for dependency propagation
             dependency = {node: 1 for node in self.nodes}
