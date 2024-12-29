@@ -81,7 +81,7 @@ Filters the data based on the user's choices and returns the selected informatio
 
              # Check all neighbors
             for neighbor, edge_attributes  in self.graph[current_node].items():
-                weight = edge_attributes ['distance']
+                weight = edge_attributes ['weight']
                 distance = current_distance + weight
 
                 # If a shorter path is found
