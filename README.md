@@ -20,9 +20,9 @@ The main script can be visualized using [nbviewer]().
 │   ├── flight_network.py        # Module for graph-based analysis
 │   ├── map_visualizer.py        # Module for create an interactive map visualization
 │   ├── partitioner.py           # Module for create partition of the graph and visualize them
-│   ├── AirlineRouteNetwork.py   # Module for graph partitioning
-│   ├── Centrality_Graph.py      # Module for community detection
-│   └── Network_Metrics.py       # Helper functions for data processing and visualization
+│   ├── AirlineRouteNetwork.py   # Module for managing and analyzing flight networks
+│   ├── Centrality_Graph.py      # Module for compute and compare centrality measures for all nodes in the graph
+│   └── Network_Metrics.py       # Module for computing and analyzing various graph centrality metrics 
 ├── main.ipynb                  # Main notebook with the implementation and results
 ├── .gitignore                  # Specifies files and directories ignored by Git
 ├── README.md                   # Project documentation
@@ -36,9 +36,9 @@ Here are links to all the files:
   * [flight_network.py](functions/flight_network.py) Module for graph-based analysis
   * [map_visualizer.py](functions/map_visualizer.py): Module for create an interactive map visualization using dash
   * [partitioner.py](functions/partitioner.py): Module for create two partition of the original graph and visualize them on the USA map
-  * [AirlineRouteNetwork.py](functions/AirlineRouteNetwork.py): User interface for advanced search and custom scoring
-  * [Centrality_Graph.py](functions/Centrality_Graph.py): Moudle for...
-  * [Network_Metrics.py](functions/Network_Metrics.py): Module for...
+  * [AirlineRouteNetwork.py](functions/AirlineRouteNetwork.py): Module for analyzing flight networks with route planning and shortest path computations between airports
+  * [Centrality_Graph.py](functions/Centrality_Graph.py): Module for compute and compare centrality measures for all nodes in the graph
+  * [Network_Metrics.py](functions/Network_Metrics.py): Module for computing and analyzing various graph centrality metrics 
 * [main.ipynb](main.ipynb): The main notebook presenting the tasks, solutions, and results.  
 * [README.md](README.md): Project documentation.  
 * LICENSE: License file for the project.
